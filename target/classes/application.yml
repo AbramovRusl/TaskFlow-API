@@ -1,0 +1,23 @@
+spring:
+  #data source
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskflow
+    username: postgres
+    password: postgres
+
+  #hibernate properties
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      properties:
+        hibernate:
+          format_sql: true
+      open-in-view: false
+  #db migration
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  #network settings
+  server:
+    port: 8088
