@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  #Postgres container for DB
+  postgres:
+    image: postgres:16
+    container_name: taskflow-postgres-db
+    environment:
+      POSTGRES_DB: taskflow
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"
