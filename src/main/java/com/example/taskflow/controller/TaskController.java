@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,5 +30,10 @@ public class TaskController {
     @GetMapping("/{id}")
     public TaskResponse getTask(@PathVariable UUID id) {
         return taskService.getTask(id);
+    }
+
+    @GetMapping
+    public List<TaskResponse> getAllTasks(){
+        return taskService.getAllTasks();
     }
 }

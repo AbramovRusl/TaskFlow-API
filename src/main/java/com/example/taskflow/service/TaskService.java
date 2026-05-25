@@ -8,6 +8,8 @@ import com.example.taskflow.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,5 +37,14 @@ public class TaskService {
         } else {
             throw new RuntimeException("Task not found");
         }
+    }
+
+    public List<TaskResponse> getAllTasks() {
+        List<TaskEntity> entities = taskRepository.findAll();
+        List<TaskResponse> responses = new ArrayList<>();
+        for (TaskEntity taskEntity :entities) {
+            responses.add(taskMapper.toResponse(taskEntity));
+        }
+        return responses;
     }
 }
