@@ -6,6 +6,7 @@ import com.example.taskflow.dto.TaskUpdateRequest;
 import com.example.taskflow.enums.TaskPriority;
 import com.example.taskflow.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,5 +45,10 @@ public class TaskController {
     @PutMapping("/{id}")
     public TaskResponse updateTask(@PathVariable UUID id, @RequestBody TaskUpdateRequest request) {
         return taskService.updateTask(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable UUID id){
+        taskService.deleteTask(id);
     }
 }

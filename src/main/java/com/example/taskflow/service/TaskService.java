@@ -68,4 +68,15 @@ public class TaskService {
             throw new RuntimeException("Task not found");
         }
     }
+
+    public void deleteTask(UUID id) {
+        Optional <TaskEntity> optional = taskRepository.findById(id);
+        if(optional.isPresent()) {
+            TaskEntity entity = optional.get();
+            taskRepository.delete(entity);
+        }
+        else {
+            throw new RuntimeException("Task not found");
+        }
+    }
 }
