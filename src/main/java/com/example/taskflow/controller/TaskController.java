@@ -2,15 +2,19 @@ package com.example.taskflow.controller;
 
 import com.example.taskflow.dto.TaskCreateRequest;
 import com.example.taskflow.dto.TaskResponse;
+import com.example.taskflow.dto.TaskUpdateRequest;
+import com.example.taskflow.enums.TaskPriority;
 import com.example.taskflow.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,5 +39,10 @@ public class TaskController {
     @GetMapping
     public List<TaskResponse> getAllTasks(){
         return taskService.getAllTasks();
+    }
+
+    @PutMapping("/{id}")
+    public TaskResponse updateTask(@PathVariable UUID id, @RequestBody TaskUpdateRequest request) {
+        return taskService.updateTask(id, request);
     }
 }
